@@ -1,0 +1,135 @@
+import React, { Fragment, useState, useEffect } from "react";
+import Numberpad from "./numberpad";
+import { InputBar } from "./input";
+
+function Calculator() {
+  const [result, setResult] = useState(0);
+  const [operator, setOperator] = useState("");
+  const [operand, setOperand] = useState("");
+  const [expression, setExpression] = useState(null);
+  const [flag, setFlag] = useState({ isOperator: false });
+
+  const generateEpression = () => {
+    // helper to create expr.
+    let _expression;
+    if (flag.isOperator) {
+      _expression = expression + operator;
+    } else {
+      _expression = !expression
+        ? operand
+        : expression === "0" && operand !== "."
+        ? operand
+        : expression + operand;
+    }
+    return setExpression(_expression);
+  };
+
+  const getResultOf = () => {
+    // helper to compute result
+  };
+  
+  const handleDecimal = () => {
+     if (
+      !operand.includes(".")
+    ) {
+      
+      if (this.state.operand.length > 21) {
+        //this.maxDigitWarning();
+      } else if (
+        endsWithOperator.test(expression) ||
+        (operand === "0" && expression === "")
+      ) {
+        this.setState({
+          currentVal: "0.",
+          formula: expression + "0."
+        });
+      } else {
+        this.setState({
+          currentVal: expression.match(/(-?\d+\.?\d*)$/)[0] + ".",
+          formula: expression + "."
+        });
+      }
+    }
+  }
+
+  useEffect(() => {
+    console.log("Effect: generateExp");
+
+    generateEpression();
+  }, [operator, operand]);
+
+  const parseOperator = (operator) => {
+    switch (operator.toUpperCase()) {
+      case "ADD":
+        return "+";
+      case "SUBTRACT":
+        return "-";
+      case "MULTIPLY":
+        return "*";
+      case "DIVIDE":
+        return "/";
+      default:
+        return;
+    }
+  };
+
+  // const handleNumbers = (value) => {
+  //   setOperand(value);
+  // };
+
+  // const handleOperators = (operation) => {
+  //   setOperator(value);
+  // };
+
+  const handleInput = ({ target, currentTarget }) => {
+    const number = target.getAttribute("number");
+    if (number) {
+      setFlag({ ...flag, isOperator: false });
+      if (number === ".") { // handle decimal 
+        debugger
+        return expression.includes(".") ? "" : setOperand(number);
+      } else setOperand(number);
+    } else {
+      setOperand("");
+      setFlag({ ...flag, isOperator: true });
+      setOperator(parseOperator(currentTarget.getAttribute("id")));
+    }
+  };
+
+  const handleClear = (e) => {
+    console.log(e.target);
+    setResult("");
+    setExpression(null);
+  };
+
+  const handleResult = ({ target, currentTarget }) => {
+    console.log({ target, currentTarget });
+    setResult(eval(expression));
+  };
+
+  const delegate = {
+    handleResult,
+    handleClear,
+    handleInput,
+  };
+
+  return (
+    <Fragment>
+      <div className="result" id="result">
+        <small className="white">{expression}</small>
+        <h2 className="title">{result}</h2>
+      </div>
+      <section className="section layout">
+        <div className="container">
+          <nav className="panel">
+            <p className="panel-heading is-active">Calculator</p>
+            <InputBar expression={expression} />
+            <Numberpad {...delegate} />
+          </nav>
+        </div>
+      </section>
+    </Fragment>
+  );
+}
+
+export default Calculator;

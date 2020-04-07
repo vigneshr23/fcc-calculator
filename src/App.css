@@ -7,6 +7,106 @@
   pointer-events: none;
 }
 
+
+.calc {
+  background-image: linear-gradient(to bottom right, rgba(176, 69, 185, 0.795), rgba(88, 169, 235, 0.897)), url('https://images.pexels.com/photos/853199/pexels-photo-853199.jpeg');
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  position: relative;
+}
+
+.layout {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+}
+.white {
+  color: var(--white);
+}
+
+.result {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+}
+.result .title {
+  color: var(--white);
+  /* text-decoration: underline;
+  text-underline-position: under;
+  text-underline-offset: 0.3em; */
+}
+
+.panel-block {
+  background-color: #f5f5f5;
+}
+
+.table {
+  min-width: 16vw;
+}
+.table td {
+  width: 20%;
+  vertical-align: middle;
+}
+
+.cell.light-wheat {
+  background-color: wheat;
+}
+.cell.danger {
+  background-color: var(--danger);
+  color: white;
+}
+.cell.light-blue {
+  background-color: var(--lightblue);
+}
+.cell.danger:hover {
+  background-color: var(--danger);
+  opacity: 0.9;
+}
+.cell.light-blue:hover, .cell.light-wheat:hover {
+  /* background-color: var(--white); */
+  opacity: 0.9;
+}
+.inherit, .inherit:hover {
+  background-color: inherit;
+  border-color: transparent;
+}
+.inherit:focus {
+  border: unset;
+  box-shadow: unset;
+}
+
+.table td:hover {
+  background-color: var(--gray);
+}
+.table td:last-child:hover {
+  background-color: transparent;
+}
+.table td:last-child>button:hover {
+  background-color: initial;
+}
+
+.expression-bar {
+  min-height: 3.25em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-weight: 700;
+  font-family: 'lato', sans-serif;
+  font-size: 1.2em;
+}
+
+code {
+  color: var(--black);
+  font-size: inherit;
+  font-weight: inherit;
+}
+.small {
+  font-size: 0.75em;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

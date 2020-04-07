@@ -1,12 +1,12 @@
 import React from "react";
-import CalculatorLayout from "./calculator-layout";
+import Calculator from "./calculator";
 
-function Calculator() {
+function CalculatorApp() {
   return (
     <div className="calc">
-      <CalculatorLayout />
+      <Calculator />
     </div>
   );
 }
 
-export default Calculator;
+export default CalculatorApp;
